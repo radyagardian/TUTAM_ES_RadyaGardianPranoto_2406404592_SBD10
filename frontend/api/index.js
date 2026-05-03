@@ -2,8 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import Barang from './models/Barang.js';
-import Peminjaman from './models/Peminjaman.js';
+import Barang from './models/barang.js';
+import Peminjaman from './models/peminjaman.js';
 
 dotenv.config();
 
