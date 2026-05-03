@@ -12,11 +12,11 @@ export default function PengurusPage() {
 
   const fetchData = async () => {
     try {
-      const resBarang = await fetch('http://localhost:5000/api/barang');
+      const resBarang = await fetch('/api/barang');
       const dataBarang = await resBarang.json();
       setDaftarBarang(dataBarang);
 
-      const resRiwayat = await fetch('http://localhost:5000/api/peminjaman');
+      const resRiwayat = await fetch('/api/peminjaman');
       const dataRiwayat = await resRiwayat.json();
       setRiwayatPeminjaman(dataRiwayat);
     } catch (error) {
@@ -31,7 +31,7 @@ export default function PengurusPage() {
   const handleTambahBarang = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/barang', {
+      const response = await fetch('/api/barang', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -64,7 +64,7 @@ export default function PengurusPage() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await fetch(`http://localhost:5000/api/barang/${id}`, { 
+          await fetch(`/api/barang/${id}`, { 
             method: 'DELETE' 
           });
           fetchData();
@@ -89,7 +89,7 @@ export default function PengurusPage() {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await fetch(`http://localhost:5000/api/peminjaman/${id}`, {
+          await fetch(`/api/peminjaman/${id}`, {
             method: 'PUT',
           });
           fetchData(); 

@@ -14,11 +14,11 @@ export default function PeminjamPage() {
   useEffect(() => {
     const fetchBarang = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/barang');
+        const response = await fetch('/api/barang');
         const data = await response.json();
         setDaftarBarang(data);
       } catch (error) {
-        console.error('Gagal mengambil data barang:', error);
+        console.error('Error returning item: ', error);
       }
     };
     fetchBarang();
@@ -41,7 +41,7 @@ export default function PeminjamPage() {
     try {
       const hariIni = new Date().toISOString().split('T')[0];
 
-      const response = await fetch('http://localhost:5000/api/peminjaman', {
+      const response = await fetch('/api/peminjaman', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -63,10 +63,10 @@ export default function PeminjamPage() {
           showConfirmButton: false
         });
       } else {
-        throw new Error('Gagal meminjam barang');
+        throw new Error('Error!');
       }
     } catch (error) {
-      Swal.fire('Terjadi Kesalahan', 'Gagal memproses peminjaman.', 'error');
+      Swal.fire('Something went wrong!', 'Error processing.', 'error');
     }
   };
 
