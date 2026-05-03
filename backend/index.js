@@ -14,7 +14,7 @@ app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to Database!'))
-  .catch((err) => console.log('❌ Gagal connect ke database:', err));
+  .catch((err) => console.log('Error connecting to database.', err));
 
 // Get: daftar barang
 app.get('/api/barang', async (req, res) => {
@@ -41,7 +41,7 @@ app.post('/api/barang', async (req, res) => {
 app.delete('/api/barang/:id', async (req, res) => {
   try {
     await Barang.findByIdAndDelete(req.params.id);
-    res.json({ message: 'Barang berhasil dihapus' });
+    res.json({ message: 'Item Deleted.' });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -82,7 +82,4 @@ app.put('/api/peminjaman/:id', async (req, res) => {
   }
 });
 
-const PORT = 5000;
-app.listen(PORT, () => {
-  console.log(`Backend running at http://localhost:${PORT}`);
-});
+export default app;
